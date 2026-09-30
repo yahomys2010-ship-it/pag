@@ -481,3 +481,34 @@ if (form && successMessage) {
 
 }
 </script>
+<script>
+const passwordForm = document.querySelector(".password-form");
+const accessScreen = document.querySelector(".access-screen");
+
+passwordForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const password = document.getElementById("password").value;
+
+    if (password === "ALE") {
+        accessScreen.classList.add("access-hidden");
+
+        setTimeout(function() {
+            accessScreen.style.display = "none";
+        }, 900);
+
+    } else {
+        const input = document.getElementById("password");
+
+        input.value = "";
+        input.placeholder = "CONTRASEÑA INCORRECTA";
+
+        input.classList.add("wrong-password");
+
+        setTimeout(function() {
+            input.classList.remove("wrong-password");
+            input.placeholder = "••••••••";
+        }, 1800);
+    }
+});
+</script>
