@@ -1255,3 +1255,10 @@ body::before {
         width: 100%;
     }
 }
+#success-message {
+    display: none !important;
+}
+
+#success-message.show {
+    display: block !important;
+}
