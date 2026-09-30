@@ -4,20 +4,24 @@
    ========================================================= */
 
 :root {
-    --black: #090708;
-    --black-soft: #110c0e;
-    --wine: #3b111b;
-    --wine-light: #641d2b;
-    --burgundy: #7b2938;
+    --black: #070506;
+    --black-soft: #10090c;
+    --black-card: #160d10;
+
+    --wine-dark: #2a0b13;
+    --wine: #48131f;
+    --wine-light: #691d2d;
+    --burgundy: #8b3043;
 
     --cream: #eadcc9;
-    --cream-soft: #cdbca7;
-    --gold: #a98b63;
+    --cream-soft: #cdbba5;
+    --gold: #ad9068;
+    --gold-soft: rgba(173, 144, 104, 0.45);
 
-    --line: rgba(234, 220, 201, 0.22);
-    --line-soft: rgba(234, 220, 201, 0.10);
+    --line: rgba(234, 220, 201, 0.20);
+    --line-soft: rgba(234, 220, 201, 0.09);
 
-    --shadow: rgba(0, 0, 0, 0.65);
+    --shadow: rgba(0, 0, 0, 0.70);
 }
 
 /* =========================================================
@@ -35,58 +39,62 @@ html {
 }
 
 body {
-    background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(100, 29, 43, 0.20),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 85% 75%,
-            rgba(59, 17, 27, 0.25),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #080607,
-            #120b0e 45%,
-            #080607
-        );
-
-    color: var(--cream);
-
-    font-family: Georgia, "Times New Roman", serif;
-
     min-height: 100vh;
 
     overflow-x: hidden;
 
+    color: var(--cream);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
     line-height: 1.7;
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(105, 29, 45, 0.18),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(72, 19, 31, 0.20),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #070506 0%,
+            #130a0d 48%,
+            #080506 100%
+        );
 }
 
-/* Textura muy sutil sobre todo el sitio */
+/* Textura general */
 
 body::before {
     content: "";
+
     position: fixed;
     inset: 0;
 
     pointer-events: none;
 
-    opacity: 0.055;
+    z-index: 9999;
 
-    background-image:
+    opacity: 0.035;
+
+    background:
         repeating-linear-gradient(
             0deg,
-            rgba(255,255,255,0.4) 0px,
-            rgba(255,255,255,0.4) 1px,
+            rgba(255, 255, 255, 0.5) 0px,
+            rgba(255, 255, 255, 0.5) 1px,
             transparent 1px,
             transparent 4px
         );
 
     mix-blend-mode: soft-light;
-
-    z-index: 999;
 }
 
 /* =========================================================
@@ -103,7 +111,7 @@ body::before {
    ========================================================= */
 
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 7px;
 }
 
 ::-webkit-scrollbar-track {
@@ -111,8 +119,8 @@ body::before {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--wine-light);
-    border-radius: 10px;
+    background: var(--wine);
+    border-radius: 20px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -124,21 +132,36 @@ body::before {
    ========================================================= */
 
 .access-screen {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 5000;
+
     min-height: 100vh;
 
     display: flex;
     justify-content: center;
     align-items: center;
 
-    padding: 30px;
+    padding: 25px;
 
     background:
         radial-gradient(
             circle at center,
-            rgba(123, 41, 56, 0.16),
+            rgba(105, 29, 45, 0.18),
             transparent 35%
         ),
-        #080607;
+        linear-gradient(
+            135deg,
+            #060405,
+            #12090c,
+            #070506
+        );
+
+    transition:
+        opacity 0.9s ease,
+        visibility 0.9s ease;
 }
 
 /* Marco exterior */
@@ -157,35 +180,55 @@ body::before {
     border: 1px solid var(--line);
 
     pointer-events: none;
+
+    opacity: 0.7;
 }
 
-/* Caja de acceso */
+/* Segundo marco */
+
+.access-screen::after {
+    content: "Y & A";
+
+    position: absolute;
+
+    bottom: 38px;
+
+    color: rgba(173, 144, 104, 0.25);
+
+    font-size: 0.65rem;
+
+    letter-spacing: 5px;
+}
+
+/* Caja */
 
 .access-box {
     position: relative;
 
     width: 100%;
-    max-width: 520px;
+    max-width: 500px;
 
-    padding: 65px 50px;
+    padding: 60px 50px;
 
     text-align: center;
 
     background:
         linear-gradient(
             145deg,
-            rgba(35, 17, 21, 0.95),
-            rgba(12, 8, 10, 0.98)
+            rgba(39, 17, 23, 0.97),
+            rgba(10, 7, 9, 0.99)
         );
 
     border: 1px solid var(--line);
 
     box-shadow:
-        0 30px 80px var(--shadow),
-        inset 0 0 60px rgba(123, 41, 56, 0.07);
+        0 35px 100px rgba(0, 0, 0, 0.75),
+        inset 0 0 80px rgba(139, 48, 67, 0.06);
+
+    animation: accessAppear 1s ease;
 }
 
-/* Esquinas decorativas */
+/* Esquinas */
 
 .access-box::before,
 .access-box::after {
@@ -195,47 +238,107 @@ body::before {
 
     color: var(--gold);
 
-    font-size: 14px;
+    font-size: 12px;
+
+    opacity: 0.8;
 }
 
 .access-box::before {
-    top: 14px;
+    top: 15px;
     left: 18px;
 }
 
 .access-box::after {
-    bottom: 14px;
+    bottom: 15px;
     right: 18px;
 }
 
-.access-box h1 {
-    font-size: 1rem;
+/* Rosa */
+
+.access-box .small-symbol {
+    display: block;
+
+    font-size: 2.4rem;
+
+    margin-bottom: 15px;
+
+    opacity: 0.85;
+}
+
+/* Texto superior */
+
+.access-box .eyebrow {
+    margin-bottom: 14px;
+
+    color: var(--gold);
+
+    font-size: 0.65rem;
+
+    font-style: normal;
 
     letter-spacing: 5px;
+}
+
+/* Título */
+
+.access-box h1 {
+    color: var(--cream);
+
+    font-size: clamp(1.7rem, 5vw, 2.2rem);
 
     font-weight: normal;
 
-    color: var(--cream-soft);
+    line-height: 1.4;
 
-    margin-bottom: 15px;
+    letter-spacing: 6px;
+
+    margin-bottom: 18px;
 }
 
-.access-box .rose {
-    font-size: 2.5rem;
+/* Ornamento */
 
-    margin-bottom: 20px;
+.ornament {
+    margin-bottom: 25px;
 
-    filter: grayscale(0.4);
+    color: var(--gold);
+
+    font-size: 0.8rem;
+
+    opacity: 0.7;
+
+    letter-spacing: 2px;
 }
 
-.access-box p {
-    color: rgba(234, 220, 201, 0.6);
+/* Texto */
+
+.access-text {
+    max-width: 350px;
+
+    margin: 0 auto 30px;
+
+    color: rgba(234, 220, 201, 0.60);
 
     font-size: 0.85rem;
 
     font-style: italic;
+}
 
-    margin-bottom: 30px;
+/* Formulario */
+
+.password-form {
+    width: 100%;
+}
+
+.password-form label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    color: rgba(234, 220, 201, 0.48);
+
+    font-size: 0.62rem;
+
+    letter-spacing: 3px;
 }
 
 .access-box input {
@@ -243,7 +346,7 @@ body::before {
 
     padding: 15px 18px;
 
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(0, 0, 0, 0.40);
 
     border: 1px solid var(--line);
 
@@ -251,30 +354,48 @@ body::before {
 
     font-family: Georgia, serif;
 
+    font-size: 0.95rem;
+
     outline: none;
 
     text-align: center;
 
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 
-    transition: 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.access-box input::placeholder {
+    color: rgba(234, 220, 201, 0.25);
 }
 
 .access-box input:focus {
+    background: rgba(0, 0, 0, 0.55);
+
     border-color: var(--gold);
 
     box-shadow:
-        0 0 20px rgba(169, 139, 99, 0.08);
+        0 0 25px rgba(173, 144, 104, 0.08);
 }
 
-.access-box button {
-    margin-top: 18px;
+/* Botón */
 
+.access-box button {
     width: 100%;
+
+    margin-top: 16px;
 
     padding: 15px;
 
-    background: transparent;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(105, 29, 45, 0.25),
+            rgba(42, 11, 19, 0.50)
+        );
 
     border: 1px solid var(--burgundy);
 
@@ -282,17 +403,103 @@ body::before {
 
     font-family: Georgia, serif;
 
+    font-size: 0.75rem;
+
     letter-spacing: 3px;
 
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
 .access-box button:hover {
     background: var(--wine);
 
     border-color: var(--gold);
+
+    box-shadow:
+        0 0 25px rgba(139, 48, 67, 0.20);
+
+    transform: translateY(-2px);
+}
+
+.access-box button:active {
+    transform: translateY(0);
+}
+
+/* Clasificación */
+
+.classified {
+    margin-top: 25px !important;
+    margin-bottom: 0 !important;
+
+    color: rgba(173, 144, 104, 0.35) !important;
+
+    font-size: 0.55rem !important;
+
+    font-style: normal !important;
+
+    letter-spacing: 3px;
+}
+
+/* Salida */
+
+.access-screen.access-hidden {
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+/* Entrada */
+
+@keyframes accessAppear {
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+/* Contraseña incorrecta */
+
+.password-form input.wrong-password {
+    animation: wrongPassword 0.45s ease;
+}
+
+@keyframes wrongPassword {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    50% {
+        transform: translateX(8px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
 }
 
 /* =========================================================
@@ -314,26 +521,26 @@ body::before {
 
     margin: 0 auto;
 
-    padding: 110px 60px;
+    padding: 115px 60px;
 
     border-bottom: 1px solid var(--line-soft);
 }
 
-/* Número de sección */
+/* Número */
 
 .section::before {
     content: attr(data-number);
 
     position: absolute;
 
-    top: 40px;
+    top: 45px;
     left: 0;
 
-    color: rgba(169, 139, 99, 0.45);
+    color: rgba(173, 144, 104, 0.40);
 
-    font-size: 0.7rem;
+    font-size: 0.62rem;
 
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 }
 
 /* =========================================================
@@ -355,20 +562,44 @@ body::before {
     overflow: hidden;
 }
 
-/* Rosa gigante de fondo */
+/* Rosa gigante */
 
 .hero::before {
     content: "🥀";
 
     position: absolute;
 
-    font-size: 17rem;
+    left: 50%;
+    top: 50%;
+
+    font-size: clamp(12rem, 30vw, 19rem);
 
     opacity: 0.035;
 
-    transform: rotate(-15deg);
+    transform:
+        translate(-50%, -50%)
+        rotate(-15deg);
 
     filter: grayscale(1);
+
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    border: 1px solid rgba(173, 144, 104, 0.06);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 35px rgba(173, 144, 104, 0.015),
+        0 0 0 70px rgba(173, 144, 104, 0.01);
 
     pointer-events: none;
 }
@@ -379,29 +610,33 @@ body::before {
     z-index: 2;
 
     max-width: 700px;
+
+    animation: fadeIn 1.4s ease;
 }
 
 .hero .rose {
     font-size: 3rem;
 
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 
     opacity: 0.85;
 }
 
 .hero h1 {
+    margin-bottom: 22px;
+
+    color: var(--cream);
+
     font-size: clamp(3rem, 8vw, 6.5rem);
 
     font-weight: normal;
 
+    line-height: 1;
+
     letter-spacing: 12px;
 
-    margin-bottom: 20px;
-
-    color: var(--cream);
-
     text-shadow:
-        0 0 35px rgba(123, 41, 56, 0.25);
+        0 0 35px rgba(139, 48, 67, 0.25);
 }
 
 .hero p {
@@ -422,6 +657,8 @@ body::before {
     color: var(--burgundy);
 
     font-size: 1.8rem;
+
+    animation: softPulse 2.8s ease-in-out infinite;
 }
 
 /* =========================================================
@@ -431,20 +668,20 @@ body::before {
 .section h2 {
     position: relative;
 
-    text-align: center;
+    margin-bottom: 52px;
 
-    margin-bottom: 50px;
+    color: var(--cream);
 
     font-size: clamp(1.4rem, 3vw, 2rem);
 
     font-weight: normal;
 
+    line-height: 1.4;
+
     letter-spacing: 3px;
 
-    color: var(--cream);
+    text-align: center;
 }
-
-/* Línea decorativa debajo */
 
 .section h2::after {
     content: "";
@@ -452,7 +689,6 @@ body::before {
     display: block;
 
     width: 55px;
-
     height: 1px;
 
     margin: 22px auto 0;
@@ -478,20 +714,20 @@ body::before {
     width: 100%;
     max-width: 650px;
 
-    padding: 45px;
+    padding: 48px;
 
     background:
         linear-gradient(
             145deg,
-            rgba(55, 18, 27, 0.45),
-            rgba(12, 8, 10, 0.8)
+            rgba(55, 18, 27, 0.48),
+            rgba(12, 8, 10, 0.88)
         );
 
     border: 1px solid var(--line);
 
     box-shadow:
-        15px 15px 0 rgba(123, 41, 56, 0.08),
-        0 25px 60px rgba(0, 0, 0, 0.35);
+        14px 14px 0 rgba(123, 41, 56, 0.07),
+        0 25px 60px rgba(0, 0, 0, 0.38);
 }
 
 /* Sello */
@@ -506,11 +742,11 @@ body::before {
 
     padding: 5px 12px;
 
-    border: 1px solid rgba(123, 41, 56, 0.7);
+    border: 1px solid rgba(139, 48, 67, 0.65);
 
-    color: rgba(190, 82, 101, 0.7);
+    color: rgba(190, 82, 101, 0.68);
 
-    font-size: 0.55rem;
+    font-size: 0.52rem;
 
     letter-spacing: 2px;
 
@@ -518,19 +754,21 @@ body::before {
 }
 
 .archive-box h3 {
-    text-align: center;
-
-    font-size: 1.1rem;
-
-    letter-spacing: 4px;
-
-    font-weight: normal;
-
     padding-bottom: 25px;
 
     margin-bottom: 25px;
 
     border-bottom: 1px solid var(--line);
+
+    color: var(--cream);
+
+    font-size: 1.1rem;
+
+    font-weight: normal;
+
+    letter-spacing: 4px;
+
+    text-align: center;
 }
 
 .archive-box p {
@@ -540,11 +778,13 @@ body::before {
 
     gap: 20px;
 
-    padding: 8px 0;
+    padding: 9px 0;
 
     color: var(--cream-soft);
 
     border-bottom: 1px dotted rgba(234, 220, 201, 0.08);
+
+    font-size: 0.9rem;
 }
 
 .archive-box strong {
@@ -565,6 +805,8 @@ body::before {
     border-bottom: none;
 
     text-align: center;
+
+    line-height: 1.8;
 }
 
 /* =========================================================
@@ -586,33 +828,31 @@ body::before {
 
     margin: 0 auto 45px;
 
+    color: var(--cream-soft);
+
     font-size: 1.35rem;
 
     line-height: 1.9;
 
     font-style: italic;
-
-    color: var(--cream-soft);
 }
 
-/* Marco para dibujo */
+/* Retrato */
 
 .ale-portrait {
+    position: relative;
+
     width: 220px;
     height: 280px;
 
     margin: auto;
-
-    border: 1px solid var(--line);
-
-    position: relative;
 
     display: flex;
 
     justify-content: center;
     align-items: center;
 
-    color: rgba(234, 220, 201, 0.3);
+    color: rgba(234, 220, 201, 0.30);
 
     background:
         radial-gradient(
@@ -620,6 +860,11 @@ body::before {
             rgba(123, 41, 56, 0.13),
             transparent 65%
         );
+
+    border: 1px solid var(--line);
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.25);
 }
 
 .ale-portrait::before,
@@ -639,8 +884,8 @@ body::before {
 }
 
 .ale-portrait::after {
-    bottom: -12px;
     right: -12px;
+    bottom: -12px;
 }
 
 /* =========================================================
@@ -648,19 +893,19 @@ body::before {
    ========================================================= */
 
 .poem {
+    position: relative;
+
     max-width: 720px;
 
     margin: auto;
 
     padding: 60px 55px;
 
-    position: relative;
-
     background:
         linear-gradient(
             145deg,
-            rgba(43, 17, 22, 0.6),
-            rgba(10, 7, 8, 0.8)
+            rgba(43, 17, 22, 0.62),
+            rgba(10, 7, 8, 0.86)
         );
 
     border: 1px solid var(--line);
@@ -674,24 +919,30 @@ body::before {
 
     position: absolute;
 
-    top: 5px;
-    left: 25px;
+    top: 0;
+    left: 24px;
+
+    color: rgba(169, 139, 99, 0.18);
 
     font-family: Georgia, serif;
 
     font-size: 6rem;
 
-    color: rgba(169, 139, 99, 0.18);
+    line-height: 1;
 }
 
 .poem p {
     white-space: pre-line;
 
+    color: var(--cream-soft);
+
     font-size: 1.05rem;
 
     line-height: 2;
 
-    color: var(--cream-soft);
+    position: relative;
+
+    z-index: 2;
 }
 
 /* =========================================================
@@ -705,14 +956,14 @@ body::before {
 
     padding: 55px;
 
-    border: 1px solid var(--line);
-
     background:
         linear-gradient(
             135deg,
-            rgba(59, 17, 27, 0.35),
-            rgba(8, 6, 7, 0.7)
+            rgba(59, 17, 27, 0.36),
+            rgba(8, 6, 7, 0.75)
         );
+
+    border: 1px solid var(--line);
 
     box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.3);
@@ -723,9 +974,9 @@ body::before {
 
     color: var(--cream-soft);
 
-    line-height: 2;
-
     font-size: 1rem;
+
+    line-height: 2;
 }
 
 .agreement-buttons {
@@ -739,6 +990,8 @@ body::before {
 }
 
 .agreement-buttons button {
+    min-width: 140px;
+
     padding: 12px 25px;
 
     background: transparent;
@@ -751,13 +1004,18 @@ body::before {
 
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
 }
 
 .agreement-buttons button:hover {
     background: var(--wine);
 
     border-color: var(--gold);
+
+    transform: translateY(-2px);
 }
 
 /* =========================================================
@@ -779,6 +1037,8 @@ body::before {
 
     margin-bottom: 13px;
 
+    overflow: hidden;
+
     background:
         linear-gradient(
             90deg,
@@ -792,18 +1052,24 @@ body::before {
 
     transition:
         border-color 0.3s ease,
-        background 0.3s ease;
+        background 0.3s ease,
+        transform 0.3s ease;
 }
 
-.questions details:hover,
+.questions details:hover {
+    transform: translateY(-1px);
+
+    border-color: rgba(169, 139, 99, 0.28);
+}
+
 .questions details[open] {
-    border-color: rgba(169, 139, 99, 0.4);
+    border-color: rgba(169, 139, 99, 0.42);
 
     background:
         linear-gradient(
             90deg,
-            rgba(59, 17, 27, 0.5),
-            rgba(15, 9, 11, 0.8)
+            rgba(59, 17, 27, 0.50),
+            rgba(15, 9, 11, 0.82)
         );
 }
 
@@ -812,7 +1078,7 @@ body::before {
 
     cursor: pointer;
 
-    padding: 21px 25px 21px 55px;
+    padding: 21px 55px;
 
     color: var(--cream-soft);
 
@@ -860,16 +1126,15 @@ body::before {
 
     width: calc(100% - 40px);
 
-    margin: 0 20px 20px;
-
     min-height: 145px;
+
+    margin: 0 20px 20px;
 
     padding: 18px;
 
     resize: vertical;
 
-    background:
-        rgba(4, 3, 4, 0.75);
+    background: rgba(4, 3, 4, 0.78);
 
     border: 1px solid var(--line-soft);
 
@@ -883,16 +1148,23 @@ body::before {
 
     outline: none;
 
-    transition: border-color 0.3s ease;
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .questions textarea:focus {
     border-color: rgba(169, 139, 99, 0.55);
+
+    box-shadow:
+        0 0 20px rgba(169, 139, 99, 0.05);
 }
 
 .questions textarea::placeholder {
     color: rgba(234, 220, 201, 0.35);
 }
+
+/* Botón enviar */
 
 .send-button {
     margin-top: 35px;
@@ -918,7 +1190,10 @@ body::before {
 
     cursor: pointer;
 
-    transition: 0.3s ease;
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
 .send-button:hover {
@@ -926,6 +1201,12 @@ body::before {
 
     box-shadow:
         0 0 30px rgba(123, 41, 56, 0.25);
+
+    transform: translateY(-2px);
+}
+
+.send-button:active {
+    transform: translateY(0);
 }
 
 .form-note {
@@ -936,6 +1217,159 @@ body::before {
     font-size: 0.78rem;
 
     font-style: italic;
+}
+
+/* =========================================================
+   CASO CERRADO
+   ========================================================= */
+
+#success-message {
+    display: none !important;
+
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    padding: 60px 40px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(43, 17, 22, 0.75),
+            rgba(10, 7, 8, 0.90)
+        );
+
+    border: 1px solid var(--gold-soft);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+#success-message.show {
+    display: block !important;
+
+    animation: caseClosed 1.2s ease-out forwards;
+}
+
+#success-message h3 {
+    margin: 15px 0;
+
+    color: var(--cream);
+
+    font-size: 1.5rem;
+
+    font-weight: normal;
+
+    letter-spacing: 5px;
+}
+
+#success-message p {
+    margin: 8px auto;
+
+    color: var(--cream-soft);
+
+    font-size: 0.95rem;
+}
+
+#success-message span {
+    display: block;
+
+    margin-top: 25px;
+
+    color: var(--gold);
+
+    letter-spacing: 5px;
+
+    font-size: 0.75rem;
+}
+
+.success-rose {
+    font-size: 3rem;
+}
+
+.success-heart {
+    margin-top: 25px;
+
+    color: var(--burgundy);
+
+    font-size: 1.7rem;
+}
+
+/* Animación */
+
+@keyframes caseClosed {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.96);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            translateY(-4px)
+            scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+#success-message .success-rose {
+    animation: roseAppear 1.4s ease-out;
+}
+
+@keyframes roseAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(0.5)
+            rotate(-15deg);
+    }
+
+    70% {
+        transform:
+            scale(1.08)
+            rotate(3deg);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+#success-message .success-heart {
+    animation:
+        heartBeat 1.8s ease-in-out 0.8s infinite;
+}
+
+@keyframes heartBeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
 }
 
 /* =========================================================
@@ -954,8 +1388,8 @@ body::before {
     background:
         linear-gradient(
             145deg,
-            rgba(43, 28, 23, 0.45),
-            rgba(20, 12, 12, 0.8)
+            rgba(43, 28, 23, 0.46),
+            rgba(20, 12, 12, 0.82)
         );
 
     border: 1px solid rgba(169, 139, 99, 0.28);
@@ -964,7 +1398,7 @@ body::before {
         0 25px 70px rgba(0, 0, 0, 0.45);
 }
 
-/* Efecto de hoja */
+/* Marco interior */
 
 .letter::before {
     content: "";
@@ -983,8 +1417,8 @@ body::before {
 
     position: absolute;
 
-    bottom: 20px;
     right: 25px;
+    bottom: 20px;
 
     color: rgba(169, 139, 99, 0.25);
 
@@ -994,6 +1428,10 @@ body::before {
 }
 
 .letter p {
+    position: relative;
+
+    z-index: 2;
+
     white-space: pre-line;
 
     color: var(--cream-soft);
@@ -1001,9 +1439,6 @@ body::before {
     font-size: 1.02rem;
 
     line-height: 2.05;
-
-    position: relative;
-    z-index: 2;
 }
 
 /* =========================================================
@@ -1018,7 +1453,6 @@ body::before {
     flex-direction: column;
 
     justify-content: center;
-
     align-items: center;
 
     text-align: center;
@@ -1046,14 +1480,16 @@ body::before {
     color: var(--burgundy);
 
     font-size: 1.8rem;
+
+    animation: softPulse 2.8s ease-in-out infinite;
 }
 
 .closing > span {
-    letter-spacing: 5px;
-
     color: var(--gold);
 
     font-size: 0.8rem;
+
+    letter-spacing: 5px;
 }
 
 .final-case {
@@ -1065,9 +1501,9 @@ body::before {
 
     border-top: 1px solid var(--line-soft);
 
-    font-size: 1rem !important;
-
     color: var(--cream-soft);
+
+    font-size: 1rem !important;
 
     font-style: italic;
 
@@ -1085,8 +1521,8 @@ body::before {
 
     position: absolute;
 
-    bottom: 30px;
     right: 20px;
+    bottom: 30px;
 
     color: rgba(169, 139, 99, 0.25);
 
@@ -1094,23 +1530,67 @@ body::before {
 }
 
 /* =========================================================
-   ANIMACIONES SUTILES
+   ANIMACIONES
    ========================================================= */
 
 @keyframes fadeIn {
+
     from {
         opacity: 0;
+
         transform: translateY(15px);
     }
 
     to {
         opacity: 1;
+
         transform: translateY(0);
     }
 }
 
-.hero-content {
-    animation: fadeIn 1.4s ease;
+@keyframes softPulse {
+
+    0%,
+    100% {
+        opacity: 0.65;
+
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+
+        transform: scale(1.08);
+    }
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .section {
+        width: calc(100% - 30px);
+
+        padding: 100px 35px;
+    }
+
+    .section::before {
+        left: 5px;
+    }
+
+    .hero h1 {
+        font-size: clamp(3rem, 10vw, 5rem);
+
+        letter-spacing: 8px;
+    }
+
+    .letter,
+    .agreement,
+    .poem {
+        padding: 50px 40px;
+    }
 }
 
 /* =========================================================
@@ -1119,32 +1599,121 @@ body::before {
 
 @media (max-width: 700px) {
 
-    .section {
-        width: calc(100% - 24px);
+    body {
+        line-height: 1.6;
+    }
 
-        padding: 85px 18px;
+    /* Acceso */
+
+    .access-screen {
+        padding: 16px;
+    }
+
+    .access-screen::before {
+        width: calc(100% - 24px);
+        height: calc(100% - 24px);
+    }
+
+    .access-screen::after {
+        bottom: 18px;
+    }
+
+    .access-box {
+        max-width: 430px;
+
+        padding: 48px 25px;
+    }
+
+    .access-box h1 {
+        font-size: 1.45rem;
+
+        letter-spacing: 4px;
+    }
+
+    .access-box .eyebrow {
+        letter-spacing: 4px;
+    }
+
+    .access-text {
+        font-size: 0.80rem;
+    }
+
+    /* Secciones */
+
+    .section {
+        width: calc(100% - 20px);
+
+        padding: 82px 15px;
     }
 
     .section::before {
-        left: 5px;
+        top: 30px;
+        left: 2px;
+
+        font-size: 0.55rem;
     }
 
-    .hero h1 {
-        font-size: 2.7rem;
-
-        letter-spacing: 7px;
+    .section:not(.hero)::after {
+        right: 8px;
+        bottom: 20px;
     }
 
-    .hero p {
-        font-size: 0.95rem;
+    /* Hero */
+
+    .hero {
+        min-height: 100svh;
+
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    .hero::after {
+        width: 270px;
+        height: 270px;
     }
 
     .hero::before {
-        font-size: 10rem;
+        font-size: 9rem;
     }
 
+    .hero .rose {
+        font-size: 2.5rem;
+
+        margin-bottom: 22px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.4rem, 13vw, 3.5rem);
+
+        letter-spacing: 5px;
+
+        line-height: 1.1;
+    }
+
+    .hero p {
+        padding: 0 12px;
+
+        font-size: 0.92rem;
+    }
+
+    /* Títulos */
+
+    .section h2 {
+        margin-bottom: 40px;
+
+        font-size: 1.35rem;
+
+        letter-spacing: 2px;
+    }
+
+    .section h2::after {
+        margin-top: 17px;
+    }
+
+    /* Archivo */
+
     .archive-box {
-        padding: 35px 22px;
+        padding: 32px 20px;
     }
 
     .archive-box::after {
@@ -1152,43 +1721,72 @@ body::before {
 
         display: table;
 
-        margin: 15px auto 0;
+        margin: 14px auto 0;
 
         transform: rotate(0);
+    }
+
+    .archive-box h3 {
+        font-size: 0.9rem;
+
+        letter-spacing: 3px;
     }
 
     .archive-box p {
         flex-direction: column;
 
         gap: 2px;
+
+        font-size: 0.82rem;
     }
 
-    .ale-section h2 {
-        font-size: 1.7rem;
+    /* Ale */
 
-        letter-spacing: 4px;
+    .ale-section h2 {
+        font-size: 1.55rem;
+
+        letter-spacing: 3px;
     }
 
     .ale-text {
-        font-size: 1.05rem;
+        padding: 0 10px;
+
+        font-size: 1rem;
+
+        line-height: 1.8;
     }
 
+    .ale-portrait {
+        width: 190px;
+        height: 245px;
+    }
+
+    /* Poema */
+
     .poem {
-        padding: 45px 25px;
+        padding: 45px 23px;
+    }
+
+    .poem::before {
+        left: 15px;
+
+        font-size: 4.5rem;
     }
 
     .poem p {
-        font-size: 0.95rem;
+        font-size: 0.91rem;
 
         line-height: 1.85;
     }
 
+    /* Acuerdo */
+
     .agreement {
-        padding: 40px 25px;
+        padding: 38px 23px;
     }
 
     .agreement p {
-        font-size: 0.95rem;
+        font-size: 0.91rem;
 
         line-height: 1.85;
     }
@@ -1199,35 +1797,88 @@ body::before {
         gap: 10px;
     }
 
+    .agreement-buttons button {
+        width: 100%;
+    }
+
+    /* Preguntas */
+
     .questions summary {
-        padding: 20px 45px 20px 48px;
+        padding: 19px 43px 19px 45px;
+
+        font-size: 0.86rem;
+
+        line-height: 1.5;
+    }
+
+    .questions summary::before {
+        left: 17px;
+    }
+
+    .questions summary::after {
+        right: 17px;
+    }
+
+    .questions textarea {
+        width: calc(100% - 24px);
+
+        min-height: 135px;
+
+        margin: 0 12px 12px;
+
+        padding: 15px;
 
         font-size: 0.9rem;
     }
 
-    .questions textarea {
-        width: calc(100% - 28px);
+    .send-button {
+        width: 100%;
 
-        margin: 0 14px 14px;
+        padding: 15px 20px;
     }
 
+    /* Caso cerrado */
+
+    #success-message {
+        padding: 45px 22px;
+    }
+
+    #success-message h3 {
+        font-size: 1.25rem;
+
+        letter-spacing: 4px;
+    }
+
+    #success-message p {
+        font-size: 0.88rem;
+    }
+
+    /* Carta */
+
     .letter {
-        padding: 50px 28px;
+        padding: 48px 25px;
+    }
+
+    .letter::before {
+        inset: 7px;
     }
 
     .letter p {
-        font-size: 0.95rem;
+        font-size: 0.92rem;
 
         line-height: 1.9;
     }
 
-    .access-box {
-        padding: 50px 25px;
+    /* Cierre */
+
+    .closing {
+        min-height: 75vh;
     }
 
-    .access-screen::before {
-        width: calc(100% - 25px);
-        height: calc(100% - 25px);
+    .final-case {
+        padding: 25px 10px 0;
+
+        font-size: 0.88rem !important;
     }
 }
 
@@ -1237,121 +1888,64 @@ body::before {
 
 @media (max-width: 380px) {
 
-    .hero h1 {
-        font-size: 2.3rem;
+    .access-box {
+        padding: 42px 20px;
+    }
 
-        letter-spacing: 5px;
+    .access-box h1 {
+        font-size: 1.3rem;
+
+        letter-spacing: 3px;
+    }
+
+    .hero h1 {
+        font-size: 2.25rem;
+
+        letter-spacing: 4px;
+    }
+
+    .hero p {
+        font-size: 0.85rem;
     }
 
     .section h2 {
-        font-size: 1.25rem;
+        font-size: 1.18rem;
     }
 
     .archive-box {
-        font-size: 0.9rem;
+        padding: 28px 17px;
+    }
+
+    .poem,
+    .agreement,
+    .letter {
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+
+    .questions summary {
+        font-size: 0.81rem;
     }
 
     .send-button {
         width: 100%;
     }
 }
-#success-message {
-    display: none !important;
-}
 
-#success-message.show {
-    display: block !important;
-}
-/* ANIMACIÓN — CASO CERRADO */
+/* =========================================================
+   RESPETO A REDUCCIÓN DE MOVIMIENTO
+   ========================================================= */
 
-#success-message.show {
-    animation: caseClosed 1.2s ease-out forwards;
-}
+@media (prefers-reduced-motion: reduce) {
 
-@keyframes caseClosed {
-    0% {
-        opacity: 0;
-        transform: translateY(25px) scale(0.96);
-    }
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
 
-    60% {
-        opacity: 1;
-        transform: translateY(-4px) scale(1.01);
-    }
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
 
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
-
-/* Rosa */
-#success-message .success-rose {
-    animation: roseAppear 1.4s ease-out;
-}
-
-@keyframes roseAppear {
-    0% {
-        opacity: 0;
-        transform: scale(0.5) rotate(-15deg);
-    }
-
-    70% {
-        transform: scale(1.08) rotate(3deg);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0);
-    }
-}
-
-/* Corazón */
-#success-message .success-heart {
-    animation: heartBeat 1.8s ease-in-out 0.8s infinite;
-}
-
-@keyframes heartBeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.18);
-    }
-}
-/* TRANSICIÓN DEL ARCHIVO */
-
-.access-screen {
-    transition: opacity 0.9s ease, visibility 0.9s ease;
-}
-
-.access-screen.access-hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-/* CONTRASEÑA INCORRECTA */
-
-.password-form input.wrong-password {
-    animation: wrongPassword 0.45s ease;
-}
-
-@keyframes wrongPassword {
-    0%, 100% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-8px);
-    }
-
-    50% {
-        transform: translateX(8px);
-    }
-
-    75% {
-        transform: translateX(-5px);
+        transition-duration: 0.01ms !important;
     }
 }
