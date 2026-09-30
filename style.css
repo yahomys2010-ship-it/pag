@@ -1262,3 +1262,61 @@ body::before {
 #success-message.show {
     display: block !important;
 }
+/* ANIMACIÓN — CASO CERRADO */
+
+#success-message.show {
+    animation: caseClosed 1.2s ease-out forwards;
+}
+
+@keyframes caseClosed {
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.96);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translateY(-4px) scale(1.01);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Rosa */
+#success-message .success-rose {
+    animation: roseAppear 1.4s ease-out;
+}
+
+@keyframes roseAppear {
+    0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-15deg);
+    }
+
+    70% {
+        transform: scale(1.08) rotate(3deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+/* Corazón */
+#success-message .success-heart {
+    animation: heartBeat 1.8s ease-in-out 0.8s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.18);
+    }
+}
