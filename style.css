@@ -1320,3 +1320,38 @@ body::before {
         transform: scale(1.18);
     }
 }
+/* TRANSICIÓN DEL ARCHIVO */
+
+.access-screen {
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+}
+
+.access-screen.access-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* CONTRASEÑA INCORRECTA */
+
+.password-form input.wrong-password {
+    animation: wrongPassword 0.45s ease;
+}
+
+@keyframes wrongPassword {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-8px);
+    }
+
+    50% {
+        transform: translateX(8px);
+    }
+
+    75% {
+        transform: translateX(-5px);
+    }
+}
